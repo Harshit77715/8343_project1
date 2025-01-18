@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Help</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        #main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            height: auto;
+        }
+
+        #navbar {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 10px 20px;
+            border-radius: 15px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        #navbar img {
+            height: 60px;
+            object-fit: contain;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+        }
+
+        #go-home-btn {
+            background-color: #2bbc7d;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: 1px solid #2bbc7d;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        #go-home-btn:hover {
+            background-color: #249960;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        #body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        #form-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(184, 176, 196);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            flex-wrap: wrap;
+        }
+
+        #form-container img {
+            opacity: 0.8;
+            max-width: 200px;
+            margin-right: 20px;
+            transition: filter 0.3s ease;
+        }
+
+        #form-container:hover img {
+            filter: blur(2px);
+        }
+
+        #form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid lightgrey;
+            border-radius: 30px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 280px;
+            max-width: 400px;
+        }
+
+        #form h2 {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        #form p {
+            margin: 0 0 20px 0;
+        }
+
+        #select {
+            width: 100%;
+            padding: 5px;
+            color: grey;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #confirm-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #confirm-btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            #navbar {
+                top: 10px;
+                left: 10px;
+                padding: 5px 10px;
+            }
+
+            #navbar img {
+                height: 50px;
+            }
+
+            #go-home-btn {
+                top: 10px;
+                right: 10px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            #form-container img {
+                max-width: 150px;
+                margin: 0 auto 20px auto;
+            }
+
+            #form-container {
+                padding: 20px;
+                flex-wrap: wrap;
+            }
+
+            #form {
+                min-width: 200px;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #navbar img {
+                height: 40px;
+            }
+
+            #go-home-btn {
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="body">
+        <div id="main">
+            <nav id="navbar">
+                <img src="logo.png" alt="Logo">
+            </nav>
+            <button id="go-home-btn" type="button">Go to Home</button>
+            <div id="form-container">
+                <img src="https://png.pngtree.com/png-vector/20220124/ourmid/pngtree-hand-click-on-sos-button-web-click-sos-vector-png-image_26213700.png" alt="SOS Image">
+                <div id="form">
+                    <h2>Stuck? Need help?</h2>
+                    <p>Let us know how we can assist you 😊</p>
+                    <select id="select">
+                        <option value="">Select one among below</option>
+                        <option value="https://readyassist.in/towing-service-readyassist.html">Vehicle Towing</option>
+                        <option value="https://readyassist.in/flat-tyre-puncture-repair.html">Flat Tire Assistance</option>
+                        <option value="https://readyassist.in/battery-jumpstart.html">Battery Jump Start</option>
+                        <option value="https://readyassist.in/petrol-diesel-fuel-delivery.html">Fuel Delivery</option>
+                        <option value="https://readyassist.in/doorstep-bike-general-service.html">Express Services</option>
+                        <option value="https://readyassist.in/key-unlock-bike-car.html">Key-unlock Assistance</option>
+                    </select>
+                    <button id="confirm-btn" onclick="openServiceLink()">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openServiceLink() {
+            var selectedOption = document.getElementById('select').value;
+            if (selectedOption !== "") {
+                window.open(selectedOption, "_blank");
+            } else {
+                alert("Please select a service option first.");
+            }
+        }
+    </script>
+</body>
+</html>
