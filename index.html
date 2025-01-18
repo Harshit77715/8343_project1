@@ -389,7 +389,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Adds a dark overlay for better text visibility */
+    background: rgba(0, 0, 0, 0.4); 
     z-index: 1;
 }
 
@@ -403,6 +403,13 @@
     align-items: flex-start;
     height: 100%;
     padding: 50px;
+}
+.content{
+    color: black;
+    align-items: center;
+}
+.content h1{
+    color: red;
 }
 
 .background-content h1 {
@@ -477,10 +484,10 @@
                     <a class="list-items" href="order.html">
                         <li>Order Essential</li>
                     </a>
-                    <a class="list-items" href="">
+                    <a class="list-items" href="transport.html">
                         <li>Book Transport</li>
                     </a>
-                    <a class="list-items" href="">
+                    <a class="list-items" href="emergency.html">
                         <li style="color: red;" class="bold">Emergency Help</li>
                     </a>
                     <a class="list-items" href="">
@@ -491,7 +498,7 @@
                 <!-- Icons -->
                 <div class="icons">
                     <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Search Icon">
-                    <a href="">
+                    <a href="signup.html">
                         <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="User Icon">
                     </a>
                     <a href=".">
@@ -525,27 +532,27 @@
                     <div class="order-item">
                         <img src="blinkit.png" alt="Blinket">
                         <p>Blinket - Groceries at your doorstep!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://blinkit.com/"><button class="order-btn">Order Now</button></a>
                     </div>
                     <div class="order-item">
                         <img src="swiggy.jpg" alt="Swiggy">
                         <p>Swiggy - Delicious meals delivered fast!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://www.swiggy.com/"><button class="order-btn">Order Now</button></a>
                     </div>
                     <div class="order-item">
                         <img src="apollo.jpg" alt="Apollo Pharmacy">
                         <p>Apollo Pharmacy - Say Goodbye to high medicine prices!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://www.apollopharmacy.in/"><button class="order-btn">Order Now</button></a>
                     </div>
                     <div class="order-item">
                         <img src="amazon.jpg" alt="amazon">
                         <p>Amazon - Shop everything you need, all in one place!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://www.amazon.in/?tag=msndeskstdin-21&ref=pd_sl_3oes7cd2fz_e&adgrpid=1324913168722107&hvadid=82807336663554&hvnetw=o&hvqmt=e&hvbmt=be&hvdev=c&hvlocint=&hvlocphy=161271&hvtargid=kwd-82808007665574:loc-90&hydadcr=5620_2377278&mcid="><button class="order-btn">Order Now</button></a>
                     </div>
                     <div class="order-item">
                         <img src="flipkart.jpg" alt="flipkart">
                         <p>Flipkart - Deals you can't resist, only on Flipkart!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://www.flipkart.com/"><button class="order-btn">Order Now</button></a>
                     </div>
                     <div class="order-item">
                         <img src="domino.png" alt="Domino's">
@@ -555,22 +562,22 @@
                     <div class="order-item">
                         <img src="La Pinoz.webp" alt="La Pino's Pizza">
                         <p>La Pino's Pizza - Taste the magic of gourmet pizzas at La Pino's!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://lapinozpizza.in/"><button class="order-btn">Order Now</button></a>
                     </div>
                     <div class="order-item">
                         <img src="BigBasket.webp" alt="Bigbasket">
                         <p>BigBasket - Fresh groceries and more, delivered at your doorstep!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://www.bigbasket.com/"><button class="order-btn">Order Now</button></a>
                     </div>
                     <div class="order-item">
                         <img src="zomoto.jpg" alt="Zomoto">
                         <p>Zomato - Craving something delicious? Your favorite meals, just a click away!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://www.zomato.com/"><button class="order-btn">Order Now</button></a>
                     </div>
                     <div class="order-item">
                         <img src="myntra.png" alt="myntra">
                         <p>Myntra - Discover the latest trends in fashion and style, just a click away!</p>
-                        <button class="order-btn">Order Now</button>
+                        <a href="https://www.myntra.com/"><button class="order-btn">Order Now</button></a>
                     </div>
                 </div>
                 <button class="slider-btn next-btn">&gt;</button>
@@ -585,19 +592,24 @@
             <div class="background-content">
                 <h1>BOOK TRANSPORT</h1>
                 <p>Quickly book a bicycle or scooter for local travel.</p>
-                <a href="">
+                <a href="transport.html">
                     <button>BOOK NOW</button>
                 </a>
             </div>
         </section>
 
-        <section>
-            <div class="features">
-                <div class="feature">
-                    <h3>Emergency Help</h3>
+        
+            <section id="emergencyy_help">
+    
+    
+                <!-- Content -->
+                <div class="background-content content">
+                    <h1>Emergency Help</h1>
                     <p>Request emergency assistance with ease.</p>
-                    <a href="emergency.html" class="btn">Get Help</a>
+                    <a href="emergency.html"><button>Get Help</button></a>
+            
                 </div>
+            </section>
                 <div class="feature">
                     <h3>Traffic Info</h3>
                     <p>Stay updated on current traffic conditions.</p>
