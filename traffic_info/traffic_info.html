@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traffic Congestion Info</title>
+
+  <link rel="stylesheet" href="./traffic_info.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Traffic Updates</h1>
+  </header>
+
+  <main>
+    <section class="traffic-info">
+      <div class="traffic-summary">
+        <h3>Recent Traffic Updates</h3>
+        <ul>
+          <li>🟠 <strong>MG Road, Bengaluru:</strong> Moderate congestion (estimated delay: 20 minutes)</li>
+          <li>🔴 <strong>Connaught Place, Delhi:</strong> Heavy congestion (estimated delay: 40 minutes due to an accident)</li>
+          <li>🟡 <strong>Marine Drive, Mumbai:</strong> Light congestion (estimated delay: 10 minutes)</li>
+        </ul>
+      </div>
+      <div class="traffic-incident-report">
+        <h3>Traffic Incidents</h3>
+        <ul>
+          <li>🚧 Accident near Lajpat Nagar, Delhi causing heavy delays (clearing expected in 45 minutes)</li>
+          <li>🔴 Road blockage on Eastern Express Highway, Mumbai due to construction (expected till 5 PM)</li>
+        </ul>
+      </div>
+      
+      <div class="search-container">
+        <h3>Location Info</h3>
+        <button id="location-btn">Get Current Location</button>
+      </div>
+      
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <nav>
+    <a class="back" href="../index.html">Back to Dashboard</a>
+  </nav>
+
+  <footer>
+    <p>&copy; 2025 Traffic Relief Dashboard</p>
+  </footer>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src="./traffic_info.js"></script>
+</body>
+</html>
