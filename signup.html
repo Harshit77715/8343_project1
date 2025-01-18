@@ -13,11 +13,14 @@
       }
 
       body {
+        background-image: url('bg2.jpg');
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        background-position: center;
         height: 100%;
         margin: 0;
         overflow: hidden;
         font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #09030f, #2575fc);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -26,7 +29,6 @@
       }
 
       .form-container {
-          background-image: url('image.png');
           border-radius: 15px;
           padding: 40px;
           width: 100%;
@@ -36,6 +38,9 @@
         }
         
         .form-container form {
+        border-radius: 1rem;
+        border: 0.5rem solid purple;
+        padding: 2rem;
         background-color: #fff;
         display: flex;
         flex-direction: column;
@@ -176,81 +181,100 @@
 </html>
 
 <script>
-  let name = document.getElementById("name");
-  let email = document.getElementById("email");
-  let password = document.getElementById("password");
-  let userInputForm = document.getElementById("userInputForm");
+    let name = document.getElementById("name");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let userInputForm = document.getElementById("userInputForm");
 
-  // user input
-  userInputForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+    // User input validation
+    userInputForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    let userName = name.value;
-    let userEmail = email.value;
-    let userPassword = password.value;
+      let userName = name.value.trim();
+      let userEmail = email.value.trim();
+      let userPassword = password.value.trim();
 
-    if (userName && userEmail && userPassword) {
-      createUser(userName, userEmail, userPassword);
-    } else {
-      alert("Please fill out all fields.");
-    }
-  });
-
-  // create User
-  async function createUser(name, email, password) {
-    try {
-      let response = await fetch(
-        `https://intelligent-traffic-relief-default-rtdb.firebaseio.com/users.json`
-      );
-      let users = await response.json();
-
-      if (!users || typeof users !== "object") {
-        users = {};
-      }
-
-      let emailExists = Object.values(users).some(
-        (user) => user && typeof user === "object" && user.email === email
-      );
-
-      if (emailExists) {
-        alert("This email is already registered.");
+      // Validation checks
+      if (!userName || !userEmail || !userPassword) {
+        alert("Please fill out all fields.");
         return;
       }
 
-      let ids = Object.values(users)
-        .filter(
-          (user) =>
-            user && typeof user === "object" && typeof user.id === "number"
-        )
-        .map((user) => user.id);
+      if (!validateEmail(userEmail)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
 
-      let nextId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+      if (userPassword.length < 8) {
+        alert("Password must be at least 8 characters long.");
+        return;
+      }
 
-      let newUser = {
-        email: email,
-        id: nextId,
-        name: name,
-        password: password,
-        data: [],
-      };
+      createUser(userName, userEmail, userPassword);
+    });
 
-      let postResponse = await fetch(
-        `https://intelligent-traffic-relief-default-rtdb.firebaseio.com/users.json`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        }
-      );
-
-      let postData = await postResponse.json();
-      console.log("User created successfully");
-      alert("User created successfully");
-      window.location.href = `/index.html`;
-    } catch (error) {
-      console.error("Error:", error);
+    // Function to validate email using regex
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
     }
-  }
-</script>
+
+    // Create User
+    async function createUser(name, email, password) {
+      try {
+        let response = await fetch(
+          `https://intelligent-traffic-relief-default-rtdb.firebaseio.com/users.json`
+        );
+        let users = await response.json();
+
+        if (!users || typeof users !== "object") {
+          users = {};
+        }
+
+        let emailExists = Object.values(users).some(
+          (user) => user && typeof user === "object" && user.email === email
+        );
+
+        if (emailExists) {
+          alert("This email is already registered.");
+          return;
+        }
+
+        let ids = Object.values(users)
+          .filter(
+            (user) =>
+              user && typeof user === "object" && typeof user.id === "number"
+          )
+          .map((user) => user.id);
+
+        let nextId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+
+        let newUser = {
+          email: email,
+          id: nextId,
+          name: name,
+          password: password,
+          data: [],
+        };
+
+        let postResponse = await fetch(
+          `https://intelligent-traffic-relief-default-rtdb.firebaseio.com/users.json`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+          }
+        );
+
+        let postData = await postResponse.json();
+        console.log("User created successfully");
+        alert("User created successfully");
+        window.location.href = `/index.html`;
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Something went wrong. Please try again later.");
+      }
+    }
+  </script>

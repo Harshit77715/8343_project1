@@ -12,8 +12,11 @@
       }
 
       body {
-        font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #09030f, #2575fc);
+        background-image: url('bg2.jpg');
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        background-position: center;
+        font-family: "Arial", sans-serif; 
         display: flex;
         justify-content: center;
         align-items: center;
@@ -23,7 +26,6 @@
       }
 
       .form-container {
-        background-image: url('image.png');
         border-radius: 15px;
         padding: 40px;
         width: 100%;
@@ -33,6 +35,9 @@
       }
       
       .form-container form {
+        border-radius: 1rem;
+        border: 0.5rem solid purple;
+        padding: 2rem;
         background-color: #fff;
         display: flex;
         flex-direction: column;
@@ -127,17 +132,18 @@
     <div class="form-container">
       <form id="loginForm">
         <h2>Login</h2>
-
+  
         <div>
-          <label for="email">Email: </label>
+          <label for="email">Email:</label>
           <input
             type="email"
             id="email"
             name="email"
             placeholder="Enter Email..."
+            required
           />
         </div>
-
+  
         <div>
           <label for="password">Password:</label>
           <input
@@ -145,45 +151,64 @@
             id="password"
             name="password"
             placeholder="Enter Password..."
+            required
           />
         </div>
-
+  
         <div class="form-footer">
           <input type="submit" value="Login" />
           <a href="./signup.html">Sign Up</a>
         </div>
       </form>
     </div>
+  
     <script>
       let loginForm = document.getElementById("loginForm");
       let email = document.getElementById("email");
       let password = document.getElementById("password");
-
+  
       loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
-
-        let userEmail = email.value;
-        let userPassword = password.value;
-
+  
+        let userEmail = email.value.trim();
+        let userPassword = password.value.trim();
+  
+        // Validation
         if (!userEmail || !userPassword) {
           alert("Please fill out all fields.");
           return;
         }
-
+  
+        if (!validateEmail(userEmail)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+  
+        if (userPassword.length < 8) {
+          alert("Password must be at least 8 characters long.");
+          return;
+        }
+  
         userLogin(userEmail, userPassword);
       });
-
+  
+      // Function to validate email using regex
+      function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+  
       async function userLogin(email, password) {
         try {
           let response = await fetch(
             `https://intelligent-traffic-relief-default-rtdb.firebaseio.com/users.json`
           );
           let data = await response.json();
-
+  
           let findUser = Object.values(data).find(
             (user) => user.email === email && user.password === password
           );
-
+  
           if (findUser) {
             window.location.href = `/index.html`;
           } else {
@@ -191,8 +216,9 @@
           }
         } catch (error) {
           console.error("Error: ", error);
+          alert("Something went wrong. Please try again later.");
         }
       }
     </script>
-  </body>
+  </body>  
 </html>
