@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transport</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             margin: 0;
@@ -60,6 +61,7 @@
             padding: 20px;
             max-width: 900px;
             width: 90%;
+            margin-top: 80px;
         }
 
         #main img {
@@ -223,10 +225,50 @@
     </style>
 </head>
 <body>
-    <div id="logo-container">
-        <img src="logo.png" alt="Logo">
-        <button id="logo-button">Go to Home</button>
-    </div>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <!-- Hamburger Menu -->
+                <div class="hamburger-lines" onclick="toggleMenu()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+    
+                <!-- Logo -->
+                <div class="logo">
+                    <img src="logo.png" alt="logo">
+                </div>
+    
+                <!-- Menu Items -->
+                <ul class="menu-items">
+                    <a class="list-items" href="index.html">
+                        <li>Home</li>
+                    </a>
+                    <a class="list-items" href="index.html#order-section">
+                        <li>Order Essential</li>
+                    </a>
+                    <a class="list-items" href="transport.html">
+                        <li>Book Transport</li>
+                    </a>
+                    <a class="list-items" href="emergency.html">
+                        <li style="color: red;" class="bold">Emergency Help</li>
+                    </a>
+                    <a class="list-items" href="./traffic_info/traffic_info.html">
+                        <li >Traffic Info</li>
+                    </a>
+                </ul>
+    
+                <!-- Icons -->
+                <div class="icons">
+            
+                    <a href="signup.html">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="User Icon">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <div id="main">
         <div id="details">
