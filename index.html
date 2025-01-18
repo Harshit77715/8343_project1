@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Relief Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body and Background */
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Section */
+
+        .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+.item a{
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.list-items{
+    text-decoration: none;
+}
+
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Logo */
+.logo img {
+    height: 40px;
+}
+
+/* Menu Items */
+.menu-items {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.menu-items li {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #444;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.menu-items li:hover {
+    color: #e63946;
+}
+
+.menu-items .bold {
+    font-weight: 700;
+}
+
+/* Icons */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icons img {
+    height: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.icons img:hover {
+    transform: scale(1.2);
+}
+
+/* Hamburger Menu */
+.hamburger-lines {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.hamburger-lines .line {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-items {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-items.active {
+        display: flex;
+    }
+
+    .hamburger-lines {
+        display: flex;
+    }
+
+    .logo {
+        margin: 0 auto;
+    }
+}
+
+        .alert {
+            background-color: #ff4b4b;
+            color: white;
+            font-size: 18px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: pulse 1.5s infinite;
+            margin-top: 20px;
+        }
+
+        .alert:hover {
+            background-color: #d73535;
+            transform: scale(1.1);
+        }
+
+        .alert:active {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transform: scale(1);
+        }
+
+        /* Order Section */
+        .order {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .order h2 {
+            font-size: 2.5rem;
+            color: #122031;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+            font-family: "Signika", serif;
+        }
+
+        .order-slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .order-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .order-item {
+            min-width: 300px;
+            flex: 0 0 auto;
+            margin: 10px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: zoomIn 0.8s ease;
+        }
+
+        .order-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .order-item img {
+            width: 350px;
+            height: 250px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            animation: fadeIn 1s ease;
+        }
+
+        .order-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            margin-top: 10px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .order-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 123, 255, 0.8);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 86, 179, 0.9);
+        }
+
+        /* Video Section */
+        .video-section {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            overflow: hidden;
+        }
+
+        .video-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .video-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .video-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-family: "Archivo Black", serif;
+            animation: fadeInDown 1s ease;
+        }
+
+        .video-content p {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-family:"Signika", serif;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 8px rgba(255, 75, 75, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(255, 75, 75, 0.7);
+            }
+        }
+
+
+    .background-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: url('transport.webp') no-repeat center center/cover; /* Replace with your image */
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Adds a dark overlay for better text visibility */
+    z-index: 1;
+}
+
+.background-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    padding: 50px;
+}
+
+.background-content h1 {
+    font-size: 2rem;
+    margin: 0 0 10px;
+}
+
+.background-content p {
+    font-size: 1.3rem;
+    margin: 0 0 20px;
+}
+
+.background-content button {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.background-content button:hover {
+    background-color: #f00;
+    color: #fff;
+}
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #122031;
+            color: #fff;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+    </style>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Varela+Round&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <!-- Hamburger Menu -->
+                <div class="hamburger-lines" onclick="toggleMenu()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+    
+                <!-- Logo -->
+                <div class="logo">
+                    <img src="logo (2).png" alt="logo">
+                </div>
+    
+                <!-- Menu Items -->
+                <ul class="menu-items">
+                    <a class="list-items" href="index.html">
+                        <li>Home</li>
+                    </a>
+                    <a class="list-items" href="order.html">
+                        <li>Order Essential</li>
+                    </a>
+                    <a class="list-items" href="">
+                        <li>Book Transport</li>
+                    </a>
+                    <a class="list-items" href="">
+                        <li style="color: red;" class="bold">Emergency Help</li>
+                    </a>
+                    <a class="list-items" href="">
+                        <li >Traffic Info</li>
+                    </a>
+                </ul>
+    
+                <!-- Icons -->
+                <div class="icons">
+                    <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Search Icon">
+                    <a href="">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="User Icon">
+                    </a>
+                    <a href=".">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="Heart Icon">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <section class="video-section">
+        <video autoplay muted loop>
+            <source src="document_6078005522777248409.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="video-content">
+            <h1>Welcome to Traffic Relief Dashboard</h1>
+            <p>Your one-stop solution for managing traffic-related issues, <br> booking transportation, ordering essentials, and requesting <br> emergency help.</p>
+            <button class="alert" onclick="sendEmergency()">SOS</button>
+        </div>
+    </section>
+
+    <main>
+        <section class="order">
+            <h2>Order Essentials</h2>
+            <div class="order-slider-container">
+                <button class="slider-btn prev-btn">&lt;</button>
+                <div class="order-slider">
+                    <div class="order-item">
+                        <img src="blinkit.png" alt="Blinket">
+                        <p>Blinket - Groceries at your doorstep!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="swiggy.jpg" alt="Swiggy">
+                        <p>Swiggy - Delicious meals delivered fast!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="apollo.jpg" alt="Apollo Pharmacy">
+                        <p>Apollo Pharmacy - Say Goodbye to high medicine prices!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="amazon.jpg" alt="amazon">
+                        <p>Amazon - Shop everything you need, all in one place!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="flipkart.jpg" alt="flipkart">
+                        <p>Flipkart - Deals you can't resist, only on Flipkart!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="domino.png" alt="Domino's">
+                        <p>Domino's - Hot, cheesy pizzas delivered right to you!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="La Pinoz.webp" alt="La Pino's Pizza">
+                        <p>La Pino's Pizza - Taste the magic of gourmet pizzas at La Pino's!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="BigBasket.webp" alt="Bigbasket">
+                        <p>BigBasket - Fresh groceries and more, delivered at your doorstep!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="zomoto.jpg" alt="Zomoto">
+                        <p>Zomato - Craving something delicious? Your favorite meals, just a click away!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="order-item">
+                        <img src="myntra.png" alt="myntra">
+                        <p>Myntra - Discover the latest trends in fashion and style, just a click away!</p>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                </div>
+                <button class="slider-btn next-btn">&gt;</button>
+            </div>
+        </section>
+
+        <section class="background-section">
+            <!-- Overlay -->
+            <div class="background-overlay"></div>
+    
+            <!-- Content -->
+            <div class="background-content">
+                <h1>BOOK TRANSPORT</h1>
+                <p>Quickly book a bicycle or scooter for local travel.</p>
+                <a href="">
+                    <button>BOOK NOW</button>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <div class="features">
+                <div class="feature">
+                    <h3>Emergency Help</h3>
+                    <p>Request emergency assistance with ease.</p>
+                    <a href="emergency.html" class="btn">Get Help</a>
+                </div>
+                <div class="feature">
+                    <h3>Traffic Info</h3>
+                    <p>Stay updated on current traffic conditions.</p>
+                    <a href="traffic-info.html" class="btn">View Info</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Footer Section -->
+   
+
+
+       <!-- Footer Section -->
+       <footer>
+        <p>&copy; 2025 Traffic Relief Dashboard. All Rights Reserved.</p>
+        <p>Follow us on 
+            <a href="https://www.facebook.com" target="_blank" style="color: #007bff; text-decoration: none;">Facebook</a>, 
+            <a href="https://www.twitter.com" target="_blank" style="color: #007bff; text-decoration: none;">Twitter</a>, and 
+            <a href="https://www.instagram.com" target="_blank" style="color: #007bff; text-decoration: none;">Instagram</a>.
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+    const menuItems = document.querySelector('.menu-items');
+    menuItems.classList.toggle('active');
+}
+        // Slider functionality
+        const slider = document.querySelector('.order-slider');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        let currentIndex = 0;
+
+        function updateSlider() {
+            const slideWidth = slider.querySelector('.order-item').clientWidth;
+            slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : 0;
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const maxIndex = slider.children.length - 1;
+            currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : maxIndex;
+            updateSlider();
+        });
+
+        // Emergency button functionality
+        function sendEmergency() {
+            alert('Emergency SOS sent! Help is on the way.');
+        }
+    </script>
+</body>
+</html>
