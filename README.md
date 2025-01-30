@@ -49,3 +49,4 @@ For inquiries, reach out at:
 
    - Email: harshit619131@gmail.com
    - GitHub: https://github.com/Harshit77715
+   - Deployed Link: https://8343-project1-l7ldvp8ur-harshit-mittals-projects.vercel.app/
